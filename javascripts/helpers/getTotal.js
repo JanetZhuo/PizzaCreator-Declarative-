@@ -8,5 +8,5 @@ function getTotal(state) {
       total = total + selectedToppingTotal;
     });
   
-    return total;
+    return total.toFixed(2);
   }

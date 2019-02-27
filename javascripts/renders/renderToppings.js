@@ -25,8 +25,6 @@ function renderToppings(state) {
         image.alt = name;
         image.src = `https://toddmotto.com/angular-pizza-creator/assets/toppings/${name}.svg`;
         
-
-
         const nameSpan = document.createElement('span');
         nameSpan.innerText = name;
 
@@ -42,7 +40,7 @@ function onToppingClick(topping, state) {
     const isExist = state.selectedToppings.find(({ name }) => name == topping.name);
 
     const newSelectedToppings = !isExist
-        ? [{...topping, amout:1}, ...selectedToppings]
+        ? [{...topping, amount:1}, ...selectedToppings]
         : selectedToppings.filter(({ name }) => name != topping.name);
 
     state.selectedToppings = newSelectedToppings;

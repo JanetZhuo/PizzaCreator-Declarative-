@@ -1,4 +1,3 @@
-
 function main() {
 
   const selectedToppings = []
@@ -12,10 +11,7 @@ function main() {
     isDisplayConfirmationModal: false,
   };
 
-  window.state = state;
-
   render(state);
-
 
   document.querySelector('button[type="submit"]').onclick = () => {
       state.isDisplayConfirmationModal = true;
@@ -28,6 +24,7 @@ function render(state) {
   renderToppings(state);
   renderSizes(state);
   renderTotal(state);
+  renderSummary(state);
 }
 
 document.addEventListener('DOMContentLoaded', main); 

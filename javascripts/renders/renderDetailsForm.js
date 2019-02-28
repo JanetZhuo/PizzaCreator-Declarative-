@@ -1,22 +1,38 @@
 function renderDetailsForm(state) {
-    const { inputs } = state;
+    let { customer } = state;
 
     const parentNode = document.querySelector('.details');
     clearNode(parentNode);
 
-    inputs.forEach(({ name, value }) => {
+    customer.forEach((customerDetail) => {
+      const { label, name } = customerDetail;
+      let { value } = customerDetail;
+
       const formControlDiv = document.createElement('div');
       formControlDiv.classList.add('form-control');
 
-      const label = document.createElement('label');
-      label.innerText = name;
+      formControlDiv.onchange = () => {
+        onDetailsFormDataChange(customerDetail, state);
+      }
 
-      const input = document.createElement('input');
-      input.value = value;
-      input.type = 'text';
+      const labelHTML = document.createElement('label');
+      labelHTML.innerText = label;
 
-      formControlDiv.append(label, input);
+      let inputHTML = document.createElement('input');
+      inputHTML.value = value;
+      inputHTML.type = 'text';
+      inputHTML.name = name;
+
+      formControlDiv.append(labelHTML, inputHTML);
 
       parentNode.append(formControlDiv);
     });
     }
+
+
+function onDetailsFormDataChange(customerDetail, state) {
+  let newValue = document.querySelector(`input[name=${customerDetail.name}]`).value;
+  customerDetail.value = newValue;
+
+  render(state);
+}

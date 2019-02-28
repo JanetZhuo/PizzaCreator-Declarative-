@@ -8,18 +8,17 @@ function renderSizes(state) {
       const { name, inches } = size;
   
       const sizeDiv = document.createElement('div');
-  
-      sizeDiv.onclick = () => {
-        state.selectedSize = size;
-        render(state);
-      }
-  
       sizeDiv.classList.add('size');
   
       if (selectedSize && name === selectedSize.name) {
         sizeDiv.classList.add('active');
       }
-  
+
+      sizeDiv.onclick = () => {
+        state.selectedSize = size;
+        render(state);
+      }
+
       const pizzaImage = document.createElement('img');
       pizzaImage.src = './pizza.png';
       pizzaImage.classList.add('pizza', name);
